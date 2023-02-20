@@ -1,6 +1,6 @@
 package com.jkutkut.proyectoaadt2_jorgere.db.data;
 
-import com.jkutkut.proyectoaadt2_jorgere.entity.AffectedCountry;
+import com.jkutkut.proyectoaadt2_jorgere.db.entity.AffectedCountry;
 
 import java.util.ArrayList;
 

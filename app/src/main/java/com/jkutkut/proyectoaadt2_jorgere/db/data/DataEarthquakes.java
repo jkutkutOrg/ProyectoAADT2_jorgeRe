@@ -1,6 +1,6 @@
 package com.jkutkut.proyectoaadt2_jorgere.db.data;
 
-import com.jkutkut.proyectoaadt2_jorgere.entity.Earthquake;
+import com.jkutkut.proyectoaadt2_jorgere.db.entity.Earthquake;
 
 import java.util.ArrayList;
 

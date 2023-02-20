@@ -1,4 +1,4 @@
-package com.jkutkut.proyectoaadt2_jorgere.entity;
+package com.jkutkut.proyectoaadt2_jorgere.db.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
@@ -7,7 +7,7 @@ import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 @Entity(
-    tableName = "earthquakes",
+    tableName = Earthquake.TABLE_NAME,
     indices = {
         @Index(
             value = {"name"},
@@ -16,6 +16,8 @@ import androidx.room.PrimaryKey;
     }
 )
 public class Earthquake {
+    public static final String TABLE_NAME = "earthquakes";
+
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "timedate")

@@ -1,13 +1,12 @@
-package com.jkutkut.proyectoaadt2_jorgere.entity;
+package com.jkutkut.proyectoaadt2_jorgere.db.entity;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.room.PrimaryKey;
 
 @Entity (
-    tableName = "affected_countries",
+    tableName = AffectedCountry.TABLE_NAME,
     primaryKeys = {"timedate", "country"},
     foreignKeys = {
         @ForeignKey(
@@ -19,6 +18,7 @@ import androidx.room.PrimaryKey;
     }
 )
 public class AffectedCountry {
+    public static final String TABLE_NAME = "affected_countries";
 
     @NonNull
     @ColumnInfo(name = "timedate")

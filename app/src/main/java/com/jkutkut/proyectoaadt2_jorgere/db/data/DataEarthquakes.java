@@ -35,7 +35,7 @@ public class DataEarthquakes {
         data.add(new Earthquake("16 Septiembre 2015, 19:54", 8.4f, "Terremoto de Coquimbo de 2015", "Frente a las costas de la Comuna de Canela, Región de Coquimbo", "31°34′52″S 71°45′07″O", "12"));
         data.add(new Earthquake("23 Junio 2001, 15:33", 8.4f, "Terremoto del sur del Perú de 2001", "Departamentos de Arequipa, Moquegua y Tacna", "16°15′36″S 73°38′24″O", "102"));
         data.add(new Earthquake("6 Febrero 2023, 01:17", 7.8f, "Terremoto de Turquía y Siria 2023", "Turquía, Siria", "37°10′26″N 37°01′55″E", "40120"));
-    }
+    } // TODO coordinates and plaze are swapped :S
     
     public ArrayList<Earthquake> getData() {
         return data;

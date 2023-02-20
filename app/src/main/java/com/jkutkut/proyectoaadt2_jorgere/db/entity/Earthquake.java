@@ -6,6 +6,8 @@ import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+
 @Entity(
     tableName = Earthquake.TABLE_NAME,
     indices = {
@@ -15,7 +17,7 @@ import androidx.room.PrimaryKey;
         )
     }
 )
-public class Earthquake {
+public class Earthquake implements Serializable {
     public static final String TABLE_NAME = "earthquakes";
 
     @PrimaryKey

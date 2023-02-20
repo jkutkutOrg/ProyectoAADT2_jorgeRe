@@ -61,4 +61,28 @@ public class Earthquake implements Serializable {
         this.deaths = deaths;
     }
 
+    // GETTERS
+    public String getTimedate() {
+        return timedate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public float getMagnitude() {
+        return magnitude;
+    }
+
+    public String getCoordinates() {
+        return coordinates;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public String getDeaths() {
+        return deaths;
+    }
 }

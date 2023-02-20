@@ -2,6 +2,7 @@ package com.jkutkut.proyectoaadt2_jorgere;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -15,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
         Button btnSend = findViewById(R.id.btnStart);
 
         btnSend.setOnClickListener(v -> {
-            // TODO
+            Intent i = new Intent(this, QueryActivity.class);
+            startActivity(i);
         });
     }
 }

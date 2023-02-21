@@ -16,4 +16,7 @@ public interface EarthquakeDAO {
 
     @Insert(onConflict = OnConflictStrategy.FAIL)
     public void insert(Earthquake earthquake);
+
+    // @Insert
+    // public void insertAll(List<Earthquake> earthquakes); // TODO implement this
 }

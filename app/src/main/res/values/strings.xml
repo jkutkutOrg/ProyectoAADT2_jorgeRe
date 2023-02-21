@@ -8,4 +8,9 @@
     <string name="btn_sort_query">Buscar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="filter_dialog_title">Fitros:</string>
+    <string name="filter_dialog_chk_magnitude">Magnitud:</string>
+    <string name="magnitude">Magnitud</string>
+    <string name="filter_dialog_default_magnitude">5</string>
+    <string name="country">Country</string>
 </resources>

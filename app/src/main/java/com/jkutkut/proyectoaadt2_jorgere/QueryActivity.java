@@ -16,6 +16,7 @@ import com.jkutkut.proyectoaadt2_jorgere.db.data.DataCountries;
 import com.jkutkut.proyectoaadt2_jorgere.db.data.DataEarthquakes;
 import com.jkutkut.proyectoaadt2_jorgere.db.entity.AffectedCountry;
 import com.jkutkut.proyectoaadt2_jorgere.db.entity.Earthquake;
+import com.jkutkut.proyectoaadt2_jorgere.dialog.FilterDialog;
 import com.jkutkut.proyectoaadt2_jorgere.rvUtil.EarthquakeAdapter;
 
 import java.util.ArrayList;
@@ -41,8 +42,8 @@ public class QueryActivity extends AppCompatActivity {
             Toast.makeText(this, "TODO", Toast.LENGTH_LONG).show();
         });
         btnFilterQuery.setOnClickListener(v -> {
-            // TODO
-            Toast.makeText(this, "TODO", Toast.LENGTH_LONG).show();
+            FilterDialog filterDialog = new FilterDialog();
+            filterDialog.show(getSupportFragmentManager(), "FilterDialog");
         });
 
         loadInitialData();
@@ -51,17 +52,17 @@ public class QueryActivity extends AppCompatActivity {
         rvQuery.setAdapter(new EarthquakeAdapter(new ArrayList<>()));
         rvQuery.setItemAnimator(new DefaultItemAnimator());
 
-        EarthquakeDAO cursor = EarthquakeDB.getInstance(this).earthquakeDAO();
-        ArrayList<Earthquake> data = (ArrayList<Earthquake>) cursor.getAll();
-        System.out.println("******** Size: " + data.size() + "**********");
-        for (Earthquake e : data) {
-            System.out.println(e);
-            ((EarthquakeAdapter) Objects.requireNonNull(rvQuery.getAdapter())).add(e);
-        }
-        EarthquakeAdapter adapter = (EarthquakeAdapter) rvQuery.getAdapter();
-        if (adapter != null) {
-            adapter.notifyDataSetChanged();
-        }
+//        EarthquakeDAO cursor = EarthquakeDB.getInstance(this).earthquakeDAO();
+//        ArrayList<Earthquake> data = (ArrayList<Earthquake>) cursor.getAll();
+//        System.out.println("******** Size: " + data.size() + "**********");
+//        for (Earthquake e : data) {
+//            System.out.println(e);
+//            ((EarthquakeAdapter) Objects.requireNonNull(rvQuery.getAdapter())).add(e);
+//        }
+//        EarthquakeAdapter adapter = (EarthquakeAdapter) rvQuery.getAdapter();
+//        if (adapter != null) {
+//            adapter.notifyDataSetChanged();
+//        }
     }
 
     private void loadInitialData() {

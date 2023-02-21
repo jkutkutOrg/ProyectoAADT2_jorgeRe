@@ -1,4 +1,4 @@
-package com.jkutkut.proyectoaadt2_jorgere.dialog;
+package com.jkutkut.proyectoaadt2_jorgere.rvUtil;
 
 import android.os.Build;
 import android.os.Bundle;

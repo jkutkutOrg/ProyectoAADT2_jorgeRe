@@ -1,5 +1,7 @@
 package com.jkutkut.proyectoaadt2_jorgere.dialog.model;
 
+import java.util.ArrayList;
+
 public class QueryFilters {
     private boolean filterByMagnitude;
     private boolean filterByCountry;
@@ -10,7 +12,7 @@ public class QueryFilters {
     private String country;
     private String[] countries;
 
-    public QueryFilters() {
+    public QueryFilters(String[] countries) {
         filterByMagnitude = false;
         filterByCountry = false;
 
@@ -18,18 +20,14 @@ public class QueryFilters {
         magnitudeValue = null;
 
         country = null;
-        countries = new String[] {
-            "Argentina",
-            "Bolivia",
-            "Brasil",
-            "Chile",
-            "Colombia",
-            "Costa Rica",
-            "Cuba"
-        };
+        this.countries = countries;
     }
 
-    // GETTERS
+    public QueryFilters(ArrayList<String> countries) {
+        this(countries.toArray(new String[0]));
+    }
+
+                        // GETTERS
     public boolean isFilterByMagnitude() {
         return filterByMagnitude;
     }

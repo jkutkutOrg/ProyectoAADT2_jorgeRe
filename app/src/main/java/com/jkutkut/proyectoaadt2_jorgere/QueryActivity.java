@@ -30,65 +30,54 @@ public class QueryActivity extends AppCompatActivity implements FilterDialogList
     private RecyclerView rvQuery;
 
     private QueryFilters filters;
+    private EarthquakeDAO earthquakeCursor;
+    private AffectedCountryDAO affectedCountryCursor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_query);
 
-        filters = new QueryFilters();
+        loadInitialDataDB();
 
         btnFilterQuery = findViewById(R.id.btnFilterQuery);
         btnQuery = findViewById(R.id.btnQuery);
         rvQuery = findViewById(R.id.rvQuery);
 
-        btnQuery.setOnClickListener(v -> {
-            // TODO
-            Toast.makeText(this, "TODO", Toast.LENGTH_LONG).show();
-        });
-        btnFilterQuery.setOnClickListener(v -> {
-            FilterDialog filterDialog = new FilterDialog();
-            filterDialog.show(getSupportFragmentManager(), "FilterDialog");
-        });
-
-        loadInitialData();
+        btnQuery.setOnClickListener(v -> search());
+        btnFilterQuery.setOnClickListener(v -> openFilterDialog());
 
         rvQuery.setLayoutManager(new LinearLayoutManager(this));
         rvQuery.setAdapter(new EarthquakeAdapter(new ArrayList<>()));
         rvQuery.setItemAnimator(new DefaultItemAnimator());
-
-//        EarthquakeDAO cursor = EarthquakeDB.getInstance(this).earthquakeDAO();
-//        ArrayList<Earthquake> data = (ArrayList<Earthquake>) cursor.getAll();
-//        System.out.println("******** Size: " + data.size() + "**********");
-//        for (Earthquake e : data) {
-//            System.out.println(e);
-//            ((EarthquakeAdapter) Objects.requireNonNull(rvQuery.getAdapter())).add(e);
-//        }
-//        EarthquakeAdapter adapter = (EarthquakeAdapter) rvQuery.getAdapter();
-//        if (adapter != null) {
-//            adapter.notifyDataSetChanged();
-//        }
     }
 
-    private void loadInitialData() {
+    private void loadInitialDataDB() {
         EarthquakeDB db = EarthquakeDB.getInstance(this);
-        EarthquakeDAO earthquakeCursor = db.earthquakeDAO();
-        AffectedCountryDAO affectedCountryCursor = db.affectedCountryDAO();
+        earthquakeCursor = db.earthquakeDAO();
+        affectedCountryCursor = db.affectedCountryDAO();
         ArrayList<Earthquake> earthquakes = (ArrayList<Earthquake>) earthquakeCursor.getAll();
         ArrayList<AffectedCountry> affectedCountries = (ArrayList<AffectedCountry>) affectedCountryCursor.getAll();
 
         if (earthquakes.size() == 0) {
             System.out.println("******** Inserting Earthquakes **********");
-            for (Earthquake e : new DataEarthquakes().getData()) {
-                earthquakeCursor.insert(e);
-            }
+            earthquakeCursor.insertAll(new DataEarthquakes().getData());
         }
         if (affectedCountries.size() == 0) {
             System.out.println("******** Inserting Affected countries **********");
-            for (AffectedCountry ac : new DataCountries().getData()) {
-                affectedCountryCursor.insert(ac);
-            }
+            affectedCountryCursor.insertAll(new DataCountries().getData());
         }
+        filters = new QueryFilters(
+                (ArrayList<String>) affectedCountryCursor.getAllCountries()
+        );
+    }
+
+    // Dialog listener
+
+    private void openFilterDialog() {
+        FilterDialog filterDialog = new FilterDialog();
+        filterDialog.show(getSupportFragmentManager(), "FilterDialog");
     }
 
     public QueryFilters onDialogStart() {
@@ -99,5 +88,20 @@ public class QueryActivity extends AppCompatActivity implements FilterDialogList
         // TODO
         Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show();
         // TODO Update UI
+    }
+
+    // Search
+    private void search() {
+        // TODO
+        Toast.makeText(this, "TODO", Toast.LENGTH_LONG).show();
+
+        ArrayList<Earthquake> data = (ArrayList<Earthquake>) earthquakeCursor.getAll();
+        System.out.println("******** Size: " + data.size() + "**********");
+        EarthquakeAdapter adapter = (EarthquakeAdapter) rvQuery.getAdapter();
+        assert adapter != null;
+        for (Earthquake e : data) {
+            adapter.add(e);
+        }
+        adapter.notifyDataSetChanged();
     }
 }

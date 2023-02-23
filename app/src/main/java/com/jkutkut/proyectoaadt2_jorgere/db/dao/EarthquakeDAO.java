@@ -12,11 +12,8 @@ import java.util.List;
 @Dao
 public interface EarthquakeDAO {
     @Query("SELECT * FROM " + Earthquake.TABLE_NAME)
-    public List<Earthquake> getAll();
+    List<Earthquake> getAll();
 
     @Insert(onConflict = OnConflictStrategy.FAIL)
-    public void insert(Earthquake earthquake);
-
-    // @Insert
-    // public void insertAll(List<Earthquake> earthquakes); // TODO implement this
+    void insertAll(List<Earthquake> earthquakes);
 }

@@ -12,7 +12,7 @@ import java.io.Serializable;
     tableName = Earthquake.TABLE_NAME,
     indices = {
         @Index(
-            value = {"name"},
+            value = {Earthquake.COLUMN_TIMEDATE},
             unique = true
         )
     }
@@ -20,29 +20,36 @@ import java.io.Serializable;
 public class Earthquake implements Serializable {
     public static final String TABLE_NAME = "earthquakes";
 
+    public static final String COLUMN_TIMEDATE = "timedate";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_MAGNITUDE = "magnitude";
+    public static final String COLUMN_COORDINATES = "coordinates";
+    public static final String COLUMN_PLACE = "place";
+    public static final String COLUMN_DEATHS = "deaths";
+
     @PrimaryKey
     @NonNull
-    @ColumnInfo(name = "timedate")
+    @ColumnInfo(name = COLUMN_TIMEDATE)
     public String timedate;
 
     @NonNull
-    @ColumnInfo(name = "name")
+    @ColumnInfo(name = COLUMN_NAME)
     public String name;
 
     @NonNull
-    @ColumnInfo(name = "magnitude")
+    @ColumnInfo(name = COLUMN_MAGNITUDE)
     public float magnitude;
 
     @NonNull
-    @ColumnInfo(name = "coordinates")
+    @ColumnInfo(name = COLUMN_COORDINATES)
     public String coordinates;
 
     @NonNull
-    @ColumnInfo(name = "place")
+    @ColumnInfo(name = COLUMN_PLACE)
     public String place;
 
     @NonNull
-    @ColumnInfo(name = "deaths")
+    @ColumnInfo(name = COLUMN_DEATHS)
     public String deaths;
 
     public Earthquake(

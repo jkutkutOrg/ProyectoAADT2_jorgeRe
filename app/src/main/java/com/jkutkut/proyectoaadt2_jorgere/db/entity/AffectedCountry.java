@@ -7,12 +7,15 @@ import androidx.room.ForeignKey;
 
 @Entity (
     tableName = AffectedCountry.TABLE_NAME,
-    primaryKeys = {"timedate", "country"},
+    primaryKeys = {
+        AffectedCountry.COLUMN_TIMEDATE,
+        AffectedCountry.COLUMN_COUNTRY
+    },
     foreignKeys = {
         @ForeignKey(
             entity = Earthquake.class,
-            parentColumns = "timedate",
-            childColumns = "timedate",
+            parentColumns = Earthquake.COLUMN_TIMEDATE,
+            childColumns = AffectedCountry.COLUMN_TIMEDATE,
             onDelete = ForeignKey.CASCADE
         )
     }
@@ -20,12 +23,15 @@ import androidx.room.ForeignKey;
 public class AffectedCountry {
     public static final String TABLE_NAME = "affected_countries";
 
+    public static final String COLUMN_COUNTRY = "country";
+    public static final String COLUMN_TIMEDATE = "timedate";
+
     @NonNull
-    @ColumnInfo(name = "timedate")
+    @ColumnInfo(name = COLUMN_TIMEDATE)
     public String timedate;
 
     @NonNull
-    @ColumnInfo(name = "country")
+    @ColumnInfo(name = COLUMN_COUNTRY)
     public String country;
 
     public AffectedCountry(

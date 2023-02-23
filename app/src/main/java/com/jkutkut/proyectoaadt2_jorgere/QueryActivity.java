@@ -1,5 +1,7 @@
 package com.jkutkut.proyectoaadt2_jorgere;
 
+import static com.jkutkut.proyectoaadt2_jorgere.dialog.FilterDialog.FILTERS_ARG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -106,15 +108,18 @@ public class QueryActivity extends AppCompatActivity implements FilterDialogList
     // Dialog listener
 
     private void openFilterDialog() {
+        Bundle args = new Bundle();
+        args.putParcelable(FILTERS_ARG, filters);
         FilterDialog filterDialog = new FilterDialog();
+        filterDialog.setArguments(args);
         filterDialog.show(getSupportFragmentManager(), "FilterDialog");
     }
 
-    public QueryFilters onDialogStart() {
-        return filters;
-    }
-
-    public void onDialogEnd() {
+    public void onDialogEnds(QueryFilters filters) {
+        if (filters == null) {
+            return;
+        }
+        this.filters = filters;
         updateFiltersUI();
     }
 

@@ -3,6 +3,7 @@ package com.jkutkut.proyectoaadt2_jorgere.dialog;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -11,6 +12,7 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
 
 import com.jkutkut.proyectoaadt2_jorgere.R;
@@ -19,6 +21,10 @@ import com.jkutkut.proyectoaadt2_jorgere.dialog.model.QueryFilters;
 import java.util.Objects;
 
 public class FilterDialog extends DialogFragment {
+
+    public static final String FILTERS_ARG = "FILTERS_ARG";
+
+    private boolean updateFiltersObj;
 
     private CheckBox chkMagnitude;
     private Spinner spnMagnitude;
@@ -30,13 +36,17 @@ public class FilterDialog extends DialogFragment {
     private FilterDialogListener listener;
     private QueryFilters filters;
 
-    // TODO add okay button
-
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         View v = requireActivity().getLayoutInflater()
                 .inflate(R.layout.filter_dialog, null);
+
+        Bundle args = getArguments();
+        assert args != null;
+        updateFiltersObj = false;
+        filters = args.getParcelable(FILTERS_ARG);
 
         chkMagnitude = v.findViewById(R.id.chkMagnitude);
         spnMagnitude = v.findViewById(R.id.spnMagnitude);
@@ -65,6 +75,13 @@ public class FilterDialog extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(v);
+        builder.setPositiveButton("OK", (dialog, which) -> {
+            this.updateFiltersObj = true;
+            this.dismiss();
+        });
+        builder.setNegativeButton("Cancel", (dialog, which) -> {
+            this.dismiss();
+        });
 
         AlertDialog dialog = builder.create();
         dialog.setCancelable(false);
@@ -77,12 +94,20 @@ public class FilterDialog extends DialogFragment {
         if (!(context instanceof FilterDialogListener))
             throw new RuntimeException("Context must implement FilterDialogListener");
         listener = (FilterDialogListener) context;
-        filters = listener.onDialogStart();
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+        QueryFilters filters = null;
+        if (updateFiltersObj) {
+            updateFilters();
+            filters = this.filters;
+        }
+        listener.onDialogEnds(filters);
+    }
+
+    public void updateFilters() {
         filters.setFilterByMagnitude(chkMagnitude.isChecked());
         filters.setMagnitudeOperator(
             Objects.requireNonNull(spnMagnitude.getSelectedItem()).toString()
@@ -94,9 +119,7 @@ public class FilterDialog extends DialogFragment {
         filters.setCountry(
             Objects.requireNonNull(spnCountry.getSelectedItem()).toString()
         );
-        listener.onDialogEnd();
     }
-
 
     public void updateUI() {
         chkMagnitude.setChecked(filters.isFilterByMagnitude());

@@ -9,6 +9,7 @@
     <string name="filter_dialog_title">Filtros:</string>
     <string name="filter_dialog_chk_magnitude">Magnitud:</string>
     <string name="magnitude">Magnitud</string>
-    <string name="filter_dialog_default_magnitude">5</string>
+    <string name="filter_dialog_default_magnitude">7</string>
     <string name="country">País</string>
+    <string name="query_no_results">No se han encontrado resultados</string>
 </resources>

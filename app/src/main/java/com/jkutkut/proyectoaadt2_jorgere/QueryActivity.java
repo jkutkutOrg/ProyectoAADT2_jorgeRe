@@ -27,8 +27,6 @@ import java.util.ArrayList;
 
 public class QueryActivity extends AppCompatActivity implements FilterDialogListener {
 
-    private Button btnFilterQuery;
-    private Button btnQuery;
     private TextView txtvMagnitude;
     private TextView txtvCountry;
     private RecyclerView rvQuery;
@@ -44,8 +42,8 @@ public class QueryActivity extends AppCompatActivity implements FilterDialogList
 
         loadInitialDataDB();
 
-        btnFilterQuery = findViewById(R.id.btnFilterQuery);
-        btnQuery = findViewById(R.id.btnQuery);
+        Button btnFilterQuery = findViewById(R.id.btnFilterQuery);
+        Button btnQuery = findViewById(R.id.btnQuery);
         txtvMagnitude = findViewById(R.id.txtvMagnitude);
         txtvCountry = findViewById(R.id.txtvCountry);
         rvQuery = findViewById(R.id.rvQuery);
@@ -121,17 +119,37 @@ public class QueryActivity extends AppCompatActivity implements FilterDialogList
     }
 
     // Search
+    @SuppressLint("NotifyDataSetChanged")
     private void search() {
         ArrayList<Earthquake> data;
         EarthquakeAdapter adapter = (EarthquakeAdapter) rvQuery.getAdapter();
         assert adapter != null;
         adapter.clear();
+        if (filters.isFilterByMagnitude() && filters.isFilterByCountry()) {
+            data = (ArrayList<Earthquake>) earthquakeCursor.getAllByMagnitudeAndCountry(
+                filters.getMagnitudeOperator(),
+                filters.getMagnitudeValue(),
+                filters.getCountry()
+            );
+        }
+        else if (filters.isFilterByMagnitude()) {
+            data = (ArrayList<Earthquake>) earthquakeCursor.getAllByMagnitude(
+                filters.getMagnitudeOperator(),
+                filters.getMagnitudeValue()
+            );
+        }
+        else if (filters.isFilterByCountry()) {
+            data = (ArrayList<Earthquake>) earthquakeCursor.getAllByCountry(
+                filters.getCountry()
+            );
+        }
+        else {
+            data = (ArrayList<Earthquake>) earthquakeCursor.getAll();
+        }
 
-        // TODO
-        Toast.makeText(this, "TODO", Toast.LENGTH_LONG).show();
-
-        data = (ArrayList<Earthquake>) earthquakeCursor.getAll();
-        System.out.println("******** Size: " + data.size() + "**********");
+        if (data.size() == 0) {
+            Toast.makeText(this, getString(R.string.query_no_results), Toast.LENGTH_SHORT).show();
+        }
         for (Earthquake e : data) {
             adapter.add(e);
         }

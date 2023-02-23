@@ -7,7 +7,6 @@ import androidx.room.Query;
 
 import com.jkutkut.proyectoaadt2_jorgere.db.entity.AffectedCountry;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Dao

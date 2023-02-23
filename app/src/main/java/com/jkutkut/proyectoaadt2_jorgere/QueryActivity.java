@@ -5,8 +5,10 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jkutkut.proyectoaadt2_jorgere.db.EarthquakeDB;
@@ -27,11 +29,12 @@ public class QueryActivity extends AppCompatActivity implements FilterDialogList
 
     private Button btnFilterQuery;
     private Button btnQuery;
+    private TextView txtvMagnitude;
+    private TextView txtvCountry;
     private RecyclerView rvQuery;
 
     private QueryFilters filters;
     private EarthquakeDAO earthquakeCursor;
-    private AffectedCountryDAO affectedCountryCursor;
 
 
     @Override
@@ -43,6 +46,8 @@ public class QueryActivity extends AppCompatActivity implements FilterDialogList
 
         btnFilterQuery = findViewById(R.id.btnFilterQuery);
         btnQuery = findViewById(R.id.btnQuery);
+        txtvMagnitude = findViewById(R.id.txtvMagnitude);
+        txtvCountry = findViewById(R.id.txtvCountry);
         rvQuery = findViewById(R.id.rvQuery);
 
         btnQuery.setOnClickListener(v -> search());
@@ -51,12 +56,14 @@ public class QueryActivity extends AppCompatActivity implements FilterDialogList
         rvQuery.setLayoutManager(new LinearLayoutManager(this));
         rvQuery.setAdapter(new EarthquakeAdapter(new ArrayList<>()));
         rvQuery.setItemAnimator(new DefaultItemAnimator());
+
+        updateFiltersUI();
     }
 
     private void loadInitialDataDB() {
         EarthquakeDB db = EarthquakeDB.getInstance(this);
         earthquakeCursor = db.earthquakeDAO();
-        affectedCountryCursor = db.affectedCountryDAO();
+        AffectedCountryDAO affectedCountryCursor = db.affectedCountryDAO();
         ArrayList<Earthquake> earthquakes = (ArrayList<Earthquake>) earthquakeCursor.getAll();
         ArrayList<AffectedCountry> affectedCountries = (ArrayList<AffectedCountry>) affectedCountryCursor.getAll();
 
@@ -73,6 +80,31 @@ public class QueryActivity extends AppCompatActivity implements FilterDialogList
         );
     }
 
+    // UI
+    @SuppressLint("DefaultLocale")
+    private void updateFiltersUI() {
+        if (filters.isFilterByMagnitude()) {
+            txtvMagnitude.setText(String.format(
+                "%s %s %.2f",
+                getString(R.string.magnitude),
+                filters.getMagnitudeOperator(),
+                filters.getMagnitudeValue()
+            ));
+
+        }
+        else
+            txtvMagnitude.setText("");
+        if (filters.isFilterByCountry()) {
+            txtvCountry.setText(String.format(
+                    "%s %s",
+                    getString(R.string.country),
+                    filters.getCountry()
+            ));
+        }
+        else
+            txtvCountry.setText("");
+    }
+
     // Dialog listener
 
     private void openFilterDialog() {
@@ -85,20 +117,21 @@ public class QueryActivity extends AppCompatActivity implements FilterDialogList
     }
 
     public void onDialogEnd() {
-        // TODO
-        Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show();
-        // TODO Update UI
+        updateFiltersUI();
     }
 
     // Search
     private void search() {
+        ArrayList<Earthquake> data;
+        EarthquakeAdapter adapter = (EarthquakeAdapter) rvQuery.getAdapter();
+        assert adapter != null;
+        adapter.clear();
+
         // TODO
         Toast.makeText(this, "TODO", Toast.LENGTH_LONG).show();
 
-        ArrayList<Earthquake> data = (ArrayList<Earthquake>) earthquakeCursor.getAll();
+        data = (ArrayList<Earthquake>) earthquakeCursor.getAll();
         System.out.println("******** Size: " + data.size() + "**********");
-        EarthquakeAdapter adapter = (EarthquakeAdapter) rvQuery.getAdapter();
-        assert adapter != null;
         for (Earthquake e : data) {
             adapter.add(e);
         }

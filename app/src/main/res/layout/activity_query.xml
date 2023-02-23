@@ -35,11 +35,28 @@
         app:layout_constraintTop_toTopOf="@id/btnFilterQuery"
         android:id="@+id/btnQuery" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Magnitud >= 7.5"
+        android:textSize="@dimen/earthquake_text_size"
+        android:id="@+id/txtvMagnitude"
+        app:layout_constraintTop_toBottomOf="@id/btnFilterQuery"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pais: Argentina"
+        android:textSize="@dimen/earthquake_text_size"
+        android:id="@+id/txtvCountry"
+        app:layout_constraintTop_toBottomOf="@id/btnFilterQuery"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/normal_margin"
-        app:layout_constraintTop_toBottomOf="@id/btnFilterQuery"
+        app:layout_constraintTop_toBottomOf="@id/txtvMagnitude"
         app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/rvQuery"/>
 

@@ -15,7 +15,7 @@ public class DataEarthquakes {
         data.add(new Earthquake("27 Marzo 1964, 17:36", 9.2f, "Terremoto de Alaska de 1964", "Anchorage, Alaska", "61°N 148°O", "128"));
         data.add(new Earthquake("11 Marzo 2011, 14:46", 9.1f, "Terremoto y maremoto de Japón de 2011", "Costa Este de la Región de Tōhoku, Honshū", "38°19′19.2f0″N 142°22′8.4f0″E", "15897"));
         data.add(new Earthquake("4 Noviembre 1952, 16:58", 9.0f, "Terremoto de Kamchatka de 1952", "Península de Kamchatka", "52°48′N 159°30′E", "2366"));
-        data.add(new Earthquake("13 Agosto 1868, 21:30", 9.0f, "Terremoto de África de 1868", "Arica", "18°36′S 71°0′O", "693"));
+        data.add(new Earthquake("13 Agosto 1868, 21:30", 9.0f, "Terremoto de África de 1868", "África", "18°36′S 71°0′O", "693"));
         data.add(new Earthquake("28 Octubre 1746, 22:30", 9.0f, "Terremoto de Lima de 1746", "Lima y Callao", "11°21′00″S 77°16′48″O", "15000 a 20000"));
         data.add(new Earthquake("26 Enero 1700, 21:30", 9.0f, "Terremoto de Cascadia de 1700", "California, Oregón, Washington y Columbia Británica", "Sin datos", "Sin datos"));
         data.add(new Earthquake("27 Febrero 2010, 03:34", 8.8f, "Terremoto de Chile de 2010", "Cobquecura, Región del Biobío (actual Ñuble)", "35°50′45.6f″S 72°42′57.6f″O", "525"));

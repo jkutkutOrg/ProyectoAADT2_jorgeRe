@@ -15,7 +15,7 @@ public class DataCountries {
         data.add(new AffectedCountry("27 Marzo 1964, 17:36", "Estados Unidos"));
         data.add(new AffectedCountry("11 Marzo 2011, 14:46", "Japón"));
         data.add(new AffectedCountry("4 Noviembre 1952, 16:58", "Rusia"));
-        data.add(new AffectedCountry("13 Agosto 1868, 21:30", "Chile"));
+        data.add(new AffectedCountry("13 Agosto 1868, 21:30", "Chile")); // Is Africa
         data.add(new AffectedCountry("28 Octubre 1746, 22:30", "Perú"));
         data.add(new AffectedCountry("26 Enero 1700, 21:30", "Estados Unidos"));
         data.add(new AffectedCountry("27 Febrero 2010, 03:34", "Chile"));

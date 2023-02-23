@@ -22,11 +22,12 @@ public interface EarthquakeDAO {
     List<Earthquake> getAllByMagnitude(SupportSQLiteQuery query);
     default List<Earthquake> getAllByMagnitude(String operator, float magnitude) {
         String query = String.format(
-            "SELECT * FROM %s WHERE %s %s ?",
+            "SELECT * FROM %s WHERE %s %s ? ORDER BY %s DESC",
             Earthquake.TABLE_NAME,
             Earthquake.COLUMN_MAGNITUDE,
-            operator
+            operator,
             // Not using magnitude here to prevent SQL injection
+            Earthquake.COLUMN_MAGNITUDE
         );
         return getAllByMagnitude(new SimpleSQLiteQuery(
             query,
@@ -37,7 +38,8 @@ public interface EarthquakeDAO {
     @Query(
         "SELECT * FROM " + Earthquake.TABLE_NAME + " e, " + AffectedCountry.TABLE_NAME + " c " +
         " WHERE " + "e." + Earthquake.COLUMN_TIMEDATE + " = " + "c." + AffectedCountry.COLUMN_TIMEDATE +
-        " AND " + "c." + AffectedCountry.COLUMN_COUNTRY + " = :country"
+        " AND " + "c." + AffectedCountry.COLUMN_COUNTRY + " = :country" +
+        " ORDER BY " + Earthquake.COLUMN_MAGNITUDE + " DESC"
     )
     List<Earthquake> getAllByCountry(String country);
 
@@ -45,14 +47,16 @@ public interface EarthquakeDAO {
     List<Earthquake> getAllByMagnitudeAndCountry(SupportSQLiteQuery query);
     default List<Earthquake> getAllByMagnitudeAndCountry(String operator, float magnitude, String country) {
         String query = String.format(
-            "SELECT * FROM %s e, %s c " +
-            " WHERE " + "e." + Earthquake.COLUMN_TIMEDATE + " = " + "c." + AffectedCountry.COLUMN_TIMEDATE +
-            " AND " + "c." + AffectedCountry.COLUMN_COUNTRY + " = ?" +
-            " AND " + "e." + Earthquake.COLUMN_MAGNITUDE + " %s ?",
+            "SELECT * FROM %s e, %s c WHERE e.%s = c.%s and c.%s = ? and e.%s %s ? ORDER BY e.%s DESC",
             Earthquake.TABLE_NAME,
             AffectedCountry.TABLE_NAME,
-            operator
+            Earthquake.COLUMN_TIMEDATE,
+            AffectedCountry.COLUMN_TIMEDATE,
+            AffectedCountry.COLUMN_COUNTRY,
+            Earthquake.COLUMN_MAGNITUDE,
+            operator,
             // Not using magnitude nor country here to prevent SQL injection
+            Earthquake.COLUMN_MAGNITUDE
         );
         return getAllByMagnitudeAndCountry(new SimpleSQLiteQuery(
             query,

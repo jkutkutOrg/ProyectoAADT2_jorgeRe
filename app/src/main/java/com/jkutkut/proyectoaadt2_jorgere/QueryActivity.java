@@ -17,21 +17,26 @@ import com.jkutkut.proyectoaadt2_jorgere.db.data.DataEarthquakes;
 import com.jkutkut.proyectoaadt2_jorgere.db.entity.AffectedCountry;
 import com.jkutkut.proyectoaadt2_jorgere.db.entity.Earthquake;
 import com.jkutkut.proyectoaadt2_jorgere.dialog.FilterDialog;
+import com.jkutkut.proyectoaadt2_jorgere.dialog.FilterDialogListener;
+import com.jkutkut.proyectoaadt2_jorgere.dialog.model.QueryFilters;
 import com.jkutkut.proyectoaadt2_jorgere.rvUtil.EarthquakeAdapter;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
-public class QueryActivity extends AppCompatActivity {
+public class QueryActivity extends AppCompatActivity implements FilterDialogListener {
 
     private Button btnFilterQuery;
     private Button btnQuery;
     private RecyclerView rvQuery;
 
+    private QueryFilters filters;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_query);
+
+        filters = new QueryFilters();
 
         btnFilterQuery = findViewById(R.id.btnFilterQuery);
         btnQuery = findViewById(R.id.btnQuery);
@@ -84,5 +89,15 @@ public class QueryActivity extends AppCompatActivity {
                 affectedCountryCursor.insert(ac);
             }
         }
+    }
+
+    public QueryFilters onDialogStart() {
+        return filters;
+    }
+
+    public void onDialogEnd() {
+        // TODO
+        Toast.makeText(this, "TODO", Toast.LENGTH_SHORT).show();
+        // TODO Update UI
     }
 }

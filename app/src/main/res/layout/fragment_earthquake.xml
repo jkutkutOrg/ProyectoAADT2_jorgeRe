@@ -16,42 +16,16 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
-        android:id="@+id/txtvMagnitudeTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/earthquake_text_size"
-        android:text="Magnitud:"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtvName"/>
-
-    <TextView
         android:id="@+id/txtvMagnitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/earthquake_text_size"
+        android:textSize="@dimen/earthquake_mag_text_size"
         android:text="7.8"
-        app:layout_constraintStart_toEndOf="@id/txtvMagnitudeTitle"
-        app:layout_constraintTop_toBottomOf="@id/txtvName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="@dimen/normal_margin"/>
 
-    <TextView
-        android:id="@+id/txtvPlace"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/earthquake_text_size"
-        android:text="Costas de Oaxaca y Guerrero"
-        app:layout_constraintTop_toBottomOf="@id/txtvMagnitude"
-        app:layout_constraintStart_toStartOf="parent"/>
 
-    <TextView
-        android:id="@+id/txtvCoordinates"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/earthquake_text_size"
-        android:text="38°14′24″S 73°3′0″O"
-        app:layout_constraintTop_toBottomOf="@id/txtvPlace"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/txtvDeathsTitle"
@@ -59,7 +33,7 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/earthquake_text_size"
         android:text="Muertes:"
-        app:layout_constraintTop_toBottomOf="@id/txtvCoordinates"
+        app:layout_constraintTop_toBottomOf="@id/txtvDatetime"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
@@ -73,12 +47,32 @@
         app:layout_constraintTop_toTopOf="@id/txtvDeathsTitle"/>
 
     <TextView
+        android:id="@+id/txtvPlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/earthquake_text_size"
+        android:text="Costas de Oaxaca y Guerrero"
+        app:layout_constraintTop_toBottomOf="@id/txtvDeathsTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/txtvCoordinates"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/earthquake_text_size"
+        android:text="38°14′24″S 73°3′0″O"
+        app:layout_constraintTop_toBottomOf="@id/txtvPlace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
         android:id="@+id/txtvDatetime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="26 Diciembre 2004, 07:58"
         android:textSize="@dimen/earthquake_text_size"
-        app:layout_constraintTop_toTopOf="@id/txtvMagnitude"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/txtvName"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

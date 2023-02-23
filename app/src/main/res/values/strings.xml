@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ProyectoAADT2_jorgeRe</string>
     <string name="main_activity_title">Proyecto T2-A de Acceso a Datos</string>
-    <string name="main_activity_subtitle">Aplicación para la consulta de información acerca de los terremotos que han ocurrido a lo largo de la historia.\n\nRealizado por Jorge Re - Jkutkut.</string>
+    <string name="main_activity_subtitle">Aplicación para la consulta de información acerca de los terremotos que han ocurrido a lo largo de la historia.\n\nMediante el uso SQLite con Room, seremos capaces de acceder a los datos de una tabla SQL.\n\nRealizado por Jorge Re - Jkutkut.</string>
     <string name="main_activity_button">Consultar datos</string>
     <string name="query_activity_title">Consulta datos:</string>
     <string name="btn_filter_query">Filtrar</string>

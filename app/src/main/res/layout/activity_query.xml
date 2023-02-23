@@ -40,12 +40,15 @@
         android:layout_height="wrap_content"
         android:text="Magnitud >= 7.5"
         android:textSize="@dimen/earthquake_text_size"
+        android:layout_marginEnd="@dimen/normal_margin"
         android:id="@+id/txtvMagnitude"
-        app:layout_constraintTop_toBottomOf="@id/btnFilterQuery"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintTop_toTopOf="@id/txtvCountry"
+        app:layout_constraintEnd_toStartOf="@id/txtvCountry"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/normal_margin"
         android:text="Pais: Argentina"
         android:textSize="@dimen/earthquake_text_size"
         android:id="@+id/txtvCountry"

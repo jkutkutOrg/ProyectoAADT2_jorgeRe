@@ -76,7 +76,7 @@ public class QueryActivity extends AppCompatActivity implements FilterDialogList
             affectedCountryCursor.insertAll(new DataCountries().getData());
         }
         filters = new QueryFilters(
-                (ArrayList<String>) affectedCountryCursor.getAllCountries()
+            (ArrayList<String>) affectedCountryCursor.getAllCountries()
         );
     }
 

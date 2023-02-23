@@ -44,7 +44,7 @@ public class QueryFilters implements Parcelable {
             magnitudeValue = in.readFloat();
         }
         country = in.readString();
-        countries = in.createStringArray(); // TODO
+        countries = in.createStringArray();
     }
 
     public static final Creator<QueryFilters> CREATOR = new Creator<QueryFilters>() {

@@ -56,8 +56,8 @@ public class Earthquake implements Serializable {
         @NonNull String timedate,
         @NonNull Float magnitude,
         @NonNull String name,
-        @NonNull String coordinates,
         @NonNull String place,
+        @NonNull String coordinates,
         @NonNull String deaths
     ) {
         this.timedate = timedate;

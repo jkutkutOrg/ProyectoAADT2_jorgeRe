@@ -12,4 +12,6 @@
     <string name="filter_dialog_default_magnitude">7</string>
     <string name="country">País</string>
     <string name="query_no_results">No se han encontrado resultados</string>
+    <string name="error_empty_magnitude">Selecciona un valor para la magnitud</string>
+    <string name="error_invalid_magnitude">La magnitud tiene que tener un valor entre 0 y 10.</string>
 </resources>

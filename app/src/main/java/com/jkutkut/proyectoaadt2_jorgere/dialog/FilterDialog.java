@@ -3,8 +3,10 @@ package com.jkutkut.proyectoaadt2_jorgere.dialog;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -75,16 +77,20 @@ public class FilterDialog extends DialogFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(v);
-        builder.setPositiveButton("OK", (dialog, which) -> {
-            this.updateFiltersObj = true;
-            this.dismiss();
-        });
+        builder.setPositiveButton("Ok", (dialog, which) -> {}); // Overwritten later to stop the dialog from closing
         builder.setNegativeButton("Cancel", (dialog, which) -> {
             this.dismiss();
         });
 
         AlertDialog dialog = builder.create();
-        dialog.setCancelable(false);
+        dialog.show();
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v1 -> {
+            if (!validateData())
+                return;
+            this.updateFiltersObj = true;
+            this.dismiss();
+        });
+        dialog.setCanceledOnTouchOutside(false);
         return dialog;
     }
 
@@ -107,6 +113,20 @@ public class FilterDialog extends DialogFragment {
         listener.onDialogEnds(filters);
     }
 
+    public boolean validateData() {
+        String magnitude = etxtMagnitude.getText().toString();
+        if (chkMagnitude.isChecked() && magnitude.isEmpty()) {
+            etxtMagnitude.setError(getString(R.string.error_empty_magnitude));
+            return false;
+        }
+        float magnitudeValue = Float.parseFloat(magnitude);
+        if (magnitudeValue < 0 || magnitudeValue > 10) {
+            etxtMagnitude.setError(getString(R.string.error_invalid_magnitude));
+            return false;
+        }
+        return true;
+    }
+
     public void updateFilters() {
         filters.setFilterByMagnitude(chkMagnitude.isChecked());
         filters.setMagnitudeOperator(
@@ -114,7 +134,7 @@ public class FilterDialog extends DialogFragment {
         );
         filters.setMagnitudeValue(
             Float.parseFloat(etxtMagnitude.getText().toString())
-        );
+        ); // It will never fail: validateData() is called before or the previous value is used
         filters.setFilterByCountry(chkCountry.isChecked());
         filters.setCountry(
             Objects.requireNonNull(spnCountry.getSelectedItem()).toString()

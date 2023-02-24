@@ -3,10 +3,8 @@ package com.jkutkut.proyectoaadt2_jorgere.dialog;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -20,6 +18,7 @@ import androidx.fragment.app.DialogFragment;
 import com.jkutkut.proyectoaadt2_jorgere.R;
 import com.jkutkut.proyectoaadt2_jorgere.dialog.model.QueryFilters;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class FilterDialog extends DialogFragment {
@@ -38,6 +37,8 @@ public class FilterDialog extends DialogFragment {
     private FilterDialogListener listener;
     private QueryFilters filters;
 
+    private boolean[] prevFilters;
+
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @NonNull
     @Override
@@ -49,6 +50,10 @@ public class FilterDialog extends DialogFragment {
         assert args != null;
         updateFiltersObj = false;
         filters = args.getParcelable(FILTERS_ARG);
+        prevFilters = new boolean[] {
+            filters.isFilterByMagnitude(),
+            filters.isFilterByCountry()
+        };
 
         chkMagnitude = v.findViewById(R.id.chkMagnitude);
         spnMagnitude = v.findViewById(R.id.spnMagnitude);
@@ -79,6 +84,9 @@ public class FilterDialog extends DialogFragment {
         builder.setView(v);
         builder.setPositiveButton("Ok", (dialog, which) -> {}); // Overwritten later to stop the dialog from closing
         builder.setNegativeButton("Cancel", (dialog, which) -> {
+            // Restore previous values
+            filters.setFilterByMagnitude(prevFilters[0]);
+            filters.setFilterByCountry(prevFilters[1]);
             this.dismiss();
         });
 
@@ -165,8 +173,13 @@ public class FilterDialog extends DialogFragment {
     }
 
     private void setMagnitudeValueUI() {
-        if (filters.getMagnitudeValue() != null)
-            etxtMagnitude.setText(filters.getMagnitudeValue().toString());
+        if (filters.getMagnitudeValue() != null) {
+            etxtMagnitude.setText(String.format(
+                    Locale.getDefault(),
+                    "%.2f",
+                    filters.getMagnitudeValue()
+            ));
+        }
         else
             etxtMagnitude.setText(getString(R.string.filter_dialog_default_magnitude));
     }

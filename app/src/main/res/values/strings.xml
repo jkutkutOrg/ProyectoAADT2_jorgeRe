@@ -14,4 +14,7 @@
     <string name="query_no_results">No se han encontrado resultados</string>
     <string name="error_empty_magnitude">Selecciona un valor para la magnitud</string>
     <string name="error_invalid_magnitude">La magnitud tiene que tener un valor entre 0 y 10.</string>
+    <string name="magnitude_spinner_description">seleccionar la magnitud</string>
+    <string name="country_spinner_description">Para seleccionar el país</string>
+    <string name="magnitude_chk_description">Para la magnitud</string>
 </resources>

@@ -18,7 +18,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/filter_dialog_title"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        android:contentDescription="@string/magnitude_chk_description"/>
 
     <TextView
         android:id="@+id/txtvMagnitude"
@@ -36,20 +37,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:entries="@array/magnitude_operators"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         android:spinnerMode="dropdown"
-        app:layout_constraintTop_toTopOf="@id/chkMagnitude"
         app:layout_constraintBottom_toBottomOf="@id/chkMagnitude"
-        app:layout_constraintStart_toEndOf="@id/txtvMagnitude" />
+        app:layout_constraintStart_toEndOf="@id/txtvMagnitude"
+        app:layout_constraintTop_toTopOf="@id/chkMagnitude"
+        android:contentDescription="@string/magnitude_spinner_description"/>
 
     <EditText
         android:id="@+id/etxtMagnitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/chkMagnitude"
+        android:inputType="number|numberDecimal"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:text="@string/filter_dialog_default_magnitude"
         app:layout_constraintBottom_toBottomOf="@id/chkMagnitude"
         app:layout_constraintStart_toEndOf="@id/spnMagnitude"
-        android:inputType="number|numberDecimal"
-        android:text="@string/filter_dialog_default_magnitude"/>
+        app:layout_constraintTop_toTopOf="@id/chkMagnitude"
+        android:importantForAutofill="no"
+        android:hint="@string/magnitude"/>
 
     <CheckBox
         android:id="@+id/chkCountry"
@@ -72,10 +80,12 @@
         android:id="@+id/spnCountry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/country_spinner_description"
+        android:minHeight="48dp"
         android:spinnerMode="dialog"
-        app:layout_constraintTop_toTopOf="@id/chkCountry"
         app:layout_constraintBottom_toBottomOf="@id/chkCountry"
-        app:layout_constraintStart_toEndOf="@id/txtvCountry" />
+        app:layout_constraintStart_toEndOf="@id/txtvCountry"
+        app:layout_constraintTop_toTopOf="@id/chkCountry" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,11 +5,9 @@ import com.jkutkut.proyectoaadt2_jorgere.db.entity.AffectedCountry;
 import java.util.ArrayList;
 
 public class DataCountries {
-    private final ArrayList<AffectedCountry> data;
 
-    public DataCountries() {
-        data = new ArrayList<>();
-
+    public static ArrayList<AffectedCountry> getData() {
+        ArrayList<AffectedCountry> data = new ArrayList<>();
         data.add(new AffectedCountry("22 Mayo 1960, 15:11", "Chile"));
         data.add(new AffectedCountry("26 Diciembre 2004, 07:58", "Indonesia"));
         data.add(new AffectedCountry("27 Marzo 1964, 17:36", "Estados Unidos"));
@@ -38,9 +36,7 @@ public class DataCountries {
         data.add(new AffectedCountry("16 Diciembre 1575, 14:30", "Chile"));
         data.add(new AffectedCountry("16 Septiembre 2015, 19:54", "Chile"));
         data.add(new AffectedCountry("23 Junio 2001, 15:33", "Perú"));
-    }
-
-    public ArrayList<AffectedCountry> getData() {
         return data;
     }
+
 }

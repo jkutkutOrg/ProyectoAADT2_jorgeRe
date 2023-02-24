@@ -69,11 +69,11 @@ public class QueryActivity extends AppCompatActivity implements FilterDialogList
 
         if (earthquakes.size() == 0) {
             System.out.println("******** Inserting Earthquakes **********");
-            earthquakeCursor.insertAll(new DataEarthquakes().getData());
+            earthquakeCursor.insertAll(DataEarthquakes.getData());
         }
         if (affectedCountries.size() == 0) {
             System.out.println("******** Inserting Affected countries **********");
-            affectedCountryCursor.insertAll(new DataCountries().getData());
+            affectedCountryCursor.insertAll(DataCountries.getData());
         }
         filters = new QueryFilters(
             (ArrayList<String>) affectedCountryCursor.getAllCountries()

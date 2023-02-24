@@ -3,7 +3,7 @@
     <string-array name="magnitude_operators">
         <item>&gt;=</item>
         <item>&lt;=</item>
-        <item>==</item>
+        <item>=</item>
         <item>&lt;</item>
         <item>&gt;</item>
     </string-array>

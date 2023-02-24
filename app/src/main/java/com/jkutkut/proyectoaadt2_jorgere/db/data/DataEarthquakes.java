@@ -5,11 +5,9 @@ import com.jkutkut.proyectoaadt2_jorgere.db.entity.Earthquake;
 import java.util.ArrayList;
 
 public class DataEarthquakes {
-    private final ArrayList<Earthquake> data;
 
-    public DataEarthquakes() {
-        data = new ArrayList<>();
-
+    public static ArrayList<Earthquake> getData() {
+        ArrayList<Earthquake> data = new ArrayList<>();
         data.add(new Earthquake("22 Mayo 1960, 15:11", 9.5f, "Terremoto de Valdivia de 1960", "Valdivia, Región de los Ríos", "38°14′24″S 73°3′0″O", "1655 a 2000"));
         data.add(new Earthquake("26 Diciembre 2004, 07:58", 9.3f, "Terremoto del océano Índico de 2004", "Frente al norte de la isla de Sumatra", "Sin datos", "230270"));
         data.add(new Earthquake("27 Marzo 1964, 17:36", 9.2f, "Terremoto de Alaska de 1964", "Anchorage, Alaska", "61°N 148°O", "128"));
@@ -35,9 +33,6 @@ public class DataEarthquakes {
         data.add(new Earthquake("16 Septiembre 2015, 19:54", 8.4f, "Terremoto de Coquimbo de 2015", "Frente a las costas de la Comuna de Canela, Región de Coquimbo", "31°34′52″S 71°45′07″O", "12"));
         data.add(new Earthquake("23 Junio 2001, 15:33", 8.4f, "Terremoto del sur del Perú de 2001", "Departamentos de Arequipa, Moquegua y Tacna", "16°15′36″S 73°38′24″O", "102"));
         data.add(new Earthquake("6 Febrero 2023, 01:17", 7.8f, "Terremoto de Turquía y Siria 2023", "Turquía, Siria", "37°10′26″N 37°01′55″E", "40120"));
-    }
-    
-    public ArrayList<Earthquake> getData() {
         return data;
     }
 }

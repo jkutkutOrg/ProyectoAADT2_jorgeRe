@@ -17,4 +17,5 @@
     <string name="magnitude_spinner_description">seleccionar la magnitud</string>
     <string name="country_spinner_description">Para seleccionar el país</string>
     <string name="magnitude_chk_description">Para la magnitud</string>
+    <string name="logo_description">logo</string>
 </resources>

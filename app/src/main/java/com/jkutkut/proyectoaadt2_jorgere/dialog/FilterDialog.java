@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -38,8 +37,6 @@ public class FilterDialog extends DialogFragment {
     private FilterDialogListener listener;
     private QueryFilters filters;
 
-    private boolean[] prevFilters;
-
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @NonNull
     @Override
@@ -51,10 +48,6 @@ public class FilterDialog extends DialogFragment {
         assert args != null;
         updateFiltersObj = false;
         filters = args.getParcelable(FILTERS_ARG);
-        prevFilters = new boolean[] {
-            filters.isFilterByMagnitude(),
-            filters.isFilterByCountry()
-        };
 
         chkMagnitude = v.findViewById(R.id.chkMagnitude);
         spnMagnitude = v.findViewById(R.id.spnMagnitude);
@@ -63,13 +56,10 @@ public class FilterDialog extends DialogFragment {
         spnCountry = v.findViewById(R.id.spnCountry);
 
         chkMagnitude.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            filters.setFilterByMagnitude(isChecked);
-            updateUI();
+            spnMagnitude.setEnabled(isChecked);
+            etxtMagnitude.setEnabled(isChecked);
         });
-        chkCountry.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            filters.setFilterByCountry(isChecked);
-            updateUI();
-        });
+        chkCountry.setOnCheckedChangeListener((buttonView, isChecked) -> spnCountry.setEnabled(isChecked));
 
         spnMagnitude.setStyleAndElements(
             getActivity(),
@@ -85,12 +75,7 @@ public class FilterDialog extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(v);
         builder.setPositiveButton("Ok", (dialog, which) -> {}); // Overwritten later to stop the dialog from closing
-        builder.setNegativeButton("Cancel", (dialog, which) -> {
-            // Restore previous values
-            filters.setFilterByMagnitude(prevFilters[0]);
-            filters.setFilterByCountry(prevFilters[1]);
-            this.dismiss();
-        });
+        builder.setNegativeButton("Cancel", (dialog, which) -> this.dismiss());
 
         AlertDialog dialog = builder.create();
         dialog.show();

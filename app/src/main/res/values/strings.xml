@@ -18,4 +18,5 @@
     <string name="country_spinner_description">Para seleccionar el país</string>
     <string name="magnitude_chk_description">Para la magnitud</string>
     <string name="logo_description">logo</string>
+    <string name="fap_icon_description">Toggle between dark and light modes.</string>
 </resources>

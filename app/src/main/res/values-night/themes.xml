@@ -12,5 +12,9 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/black</item>
         <!-- Customize your theme here. -->
+
+
+        <!-- AppCompat button color -->
+        <item name="colorButtonNormal">@android:color/holo_orange_light</item>
     </style>
 </resources>

@@ -9,8 +9,12 @@
         <item name="colorSecondary">@android:color/holo_orange_light</item>
         <item name="colorSecondaryVariant">@android:color/holo_orange_light</item>
         <item name="colorOnSecondary">@color/black</item>
+
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/black</item>
         <!-- Customize your theme here. -->
+
+        <!-- AppCompat button color -->
+        <item name="colorButtonNormal">@android:color/holo_orange_light</item>
     </style>
 </resources>

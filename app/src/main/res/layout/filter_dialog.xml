@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/filter_dialog_background"
     android:padding="@dimen/activity_padding">
 
     <TextView
@@ -31,14 +32,15 @@
         app:layout_constraintStart_toEndOf="@id/chkMagnitude"
         app:layout_constraintBottom_toBottomOf="@id/chkMagnitude"/>
 
-<!--TODO change font size with https://stackoverflow.com/questions/9476665/how-to-change-spinner-text-size-and-text-color-->
-    <Spinner
+    <com.jkutkut.proyectoaadt2_jorgere.custom.CustomSpinner
         android:id="@+id/spnMagnitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/normal_margin"
         android:entries="@array/magnitude_operators"
         android:minWidth="48dp"
         android:minHeight="48dp"
+        android:gravity="center"
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="@id/chkMagnitude"
         app:layout_constraintStart_toEndOf="@id/txtvMagnitude"
@@ -76,15 +78,17 @@
         app:layout_constraintStart_toEndOf="@id/chkCountry"
         app:layout_constraintBottom_toBottomOf="@id/chkCountry"/>
 
-    <Spinner
+    <com.jkutkut.proyectoaadt2_jorgere.custom.CustomSpinner
         android:id="@+id/spnCountry"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:contentDescription="@string/country_spinner_description"
         android:minHeight="48dp"
+        android:gravity="center"
         android:spinnerMode="dialog"
         app:layout_constraintBottom_toBottomOf="@id/chkCountry"
-        app:layout_constraintStart_toEndOf="@id/txtvCountry"
+        app:layout_constraintStart_toStartOf="@id/spnMagnitude"
+        app:layout_constraintEnd_toEndOf="@id/etxtMagnitude"
         app:layout_constraintTop_toTopOf="@id/chkCountry" />
 
 

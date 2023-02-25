@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
 
 import com.jkutkut.proyectoaadt2_jorgere.R;
+import com.jkutkut.proyectoaadt2_jorgere.custom.CustomSpinner;
 import com.jkutkut.proyectoaadt2_jorgere.dialog.model.QueryFilters;
 
 import java.util.Locale;
@@ -28,11 +29,11 @@ public class FilterDialog extends DialogFragment {
     private boolean updateFiltersObj;
 
     private CheckBox chkMagnitude;
-    private Spinner spnMagnitude;
+    private CustomSpinner spnMagnitude;
     private EditText etxtMagnitude;
 
     private CheckBox chkCountry;
-    private Spinner spnCountry;
+    private CustomSpinner spnCountry;
 
     private FilterDialogListener listener;
     private QueryFilters filters;
@@ -70,12 +71,13 @@ public class FilterDialog extends DialogFragment {
             updateUI();
         });
 
-        spnCountry.setAdapter(
-            new android.widget.ArrayAdapter<>(
-                getActivity(),
-                android.R.layout.simple_spinner_dropdown_item,
-                filters.getCountries()
-            )
+        spnMagnitude.setStyleAndElements(
+            getActivity(),
+            getResources().getStringArray(R.array.magnitude_operators)
+        );
+        spnCountry.setStyleAndElements(
+            getActivity(),
+            filters.getCountries()
         );
 
         updateUI();

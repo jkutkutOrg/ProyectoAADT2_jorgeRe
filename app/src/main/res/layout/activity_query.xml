@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/title" />
 
-    <Button
+    <com.jkutkut.proyectoaadt2_jorgere.custom.CustomButton
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/normal_margin"
@@ -27,7 +27,7 @@
         android:id="@+id/btnFilterQuery"
         android:layout_marginEnd="@dimen/normal_margin"/>
 
-    <Button
+    <com.jkutkut.proyectoaadt2_jorgere.custom.CustomButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_sort_query"

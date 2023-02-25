@@ -4,7 +4,7 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@android:color/holo_orange_light</item>
         <item name="colorPrimaryVariant">@android:color/background_dark</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@android:color/background_dark</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@android:color/holo_orange_light</item>
         <item name="colorSecondaryVariant">@android:color/holo_orange_light</item>
@@ -16,5 +16,6 @@
 
         <!-- AppCompat button color -->
         <item name="colorButtonNormal">@android:color/holo_orange_light</item>
+
     </style>
 </resources>

@@ -14,7 +14,7 @@ public interface AffectedCountryDAO {
     @Query("SELECT * FROM " + AffectedCountry.TABLE_NAME)
     List<AffectedCountry> getAll();
 
-    @Query("SELECT DISTINCT(" + AffectedCountry.COLUMN_COUNTRY + ") FROM " + AffectedCountry.TABLE_NAME)
+    @Query("SELECT DISTINCT(" + AffectedCountry.COLUMN_COUNTRY + ") FROM " + AffectedCountry.TABLE_NAME + " ORDER BY " + AffectedCountry.COLUMN_COUNTRY)
     List<String> getAllCountries();
 
     @Insert(onConflict = OnConflictStrategy.FAIL)
